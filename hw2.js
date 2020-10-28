@@ -4,10 +4,12 @@
  *      asks user if he or she like Soccer
  *  Stores the info and displays on the page and console.
  */
+// For test:
+// let name = "zxcv";
+// let cfm = true;
 alert("Welsome to the page!");
 let name = prompt("Please enter your name: ");
 let cfm = confirm("Do you like Soccer?")
-
 let nameDiv = document.getElementById("name");
 nameDiv.innerHTML = name;
 let likeSoccerDiv = document.getElementById("likeSoccer");
@@ -124,3 +126,63 @@ afterDiv = document.getElementById("afterSort");
 cur = "After sorting: " + JSON.stringify(library);
 afterDiv.innerHTML = cur;
 console.log(library);
+
+/**
+ * Part 6
+ * Creates a constructor function Calculator that creates objects 
+ *  with 3 methods:
+ * 
+ * @function read() asks for two values using prompt and remembers 
+ *  them inobject properties.
+ * @function sum() returns the sum of these properties.
+ * @function mul() returns the multiplication product of these 
+ *  properties.
+ */
+function Calculateor() {
+    this.base = [], 
+    this.read = function () {
+        this.base.push(prompt("Please enter a number: "));
+        this.base.push(prompt("Please enter a second number: "));
+    },
+    this.sum = function () {
+        let res = 0;
+        this.base.forEach((value) => {
+            res += Number(value);
+        });
+        document.getElementById("resSum").innerHTML = res;
+        return res;
+    },
+    this.mul = function () {
+        let res = 1;
+        this.base.forEach(v => {
+            res *= Number(v);
+        });
+        document.getElementById("resMul").innerHTML = res;
+        return res;
+    }
+}
+let obj = new Calculateor();
+
+/**
+ * Part 7
+ * Create a constructor function called Hero That will accept the
+ *  arguments name and occupation.
+ * 
+ * @function whoAreYou() returns a sentence template including the name
+ *  and the occupation of the object. 
+ */
+function Hero(name, occupation) {
+    this.name = name;
+    this.occupation = occupation;
+}
+
+Hero.prototype = {
+    constructor: Hero,
+    whoAreYou: function() {
+        return "My name is " + this.name + " and I am a " + this.occupation + ".";
+    }    
+}
+
+let hero = new Hero("Michaelangello", "Ninja");
+document.getElementById("hero").innerHTML = hero.whoAreYou();
+console.log(hero.whoAreYou());
